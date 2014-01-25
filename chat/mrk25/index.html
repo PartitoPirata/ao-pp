@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Chat pirata</title>
+	<link rel="shortcut icon" href="../res/img/favicon.png" type="image/gif" />
+	<link rel="stylesheet" type="text/css" href="../res/default.css" />
+	<style type="text/css">
+	#chat-tabs
+	{
+	background-image:none;
+	}
+	</style>
+	<script type="text/javascript" src="//ao2014.partito-pirata.it/js/jquery-2.0.3.min.js"></script>
+	<script type="text/javascript" src="//ao2014.partito-pirata.it/js/jquery-migrate-1.2.1.min.js"></script>
+	<script type="text/javascript" src="../libs/libs.min.js"></script>
+	<script type="text/javascript" src="../candy.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			Candy.init('http-bind/', {
+				core: { 
+					debug: false,
+					autojoin: ['malborghetto@im.bquery.com']
+				},
+				view: { resources: '../res/' }
+			});
+			
+			//Candy.Core.connect();
+			Candy.Core.connect('chat.bquery.com');
+		});
+	</script>
+</head>
+<body>
+	<div id="candy"></div>
+</body>
+</html>
