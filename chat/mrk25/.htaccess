@@ -1,4 +1,0 @@
-AddDefaultCharset UTF-8
-Options +MultiViews
-RewriteEngine On
-RewriteRule http-bind/ http://ao2014.partito-pirata.it:5280/http-bind/ [P]

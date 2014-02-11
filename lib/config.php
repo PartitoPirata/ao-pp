@@ -77,13 +77,13 @@ $tmpl = $theEvent;
 
 $db_charset = 'utf-8';
 $algo="sha256";
-$salt = '#mannaggiaalimortaccitua';
+$salt = '3a1e8fa7fb5e5b013b938fb40c08fb46a8e460a0ac2a0809c6fb94868ccbafa0';
 
 
 $users = array(
-	'mrk25'=>'',
-	'piratiFirenze' => '',
-	'guest'=>''
+	'piratiFirenze' => 'supersecretpassword',
+	'guest'=>'secretpassword',
+	'pirata'=>'55d7ec4e6e4e2ddf35a6ab6d3f97cec35e197a76de9fd13f5ab4477a2b9d54d7',
 );
 
 $admins = array(
@@ -93,7 +93,7 @@ $admins = array(
 
 
 
-$mysql_conn = mysql_connect('localhost', 'events_user', '');
+$mysql_conn = mysql_connect('localhost', 'mysql_user', 'mysql_password');
 if(!$mysql_conn){
 die();
 } else {

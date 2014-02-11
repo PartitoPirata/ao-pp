@@ -8,17 +8,6 @@ RewriteRule ^([^/]*)/?([^/]*)/?([^/]*)/?$ index.php?file=$1&class=$2&page=$3&%{Q
 php_value session.cookie_lifetime 14400
 php_value session.gc_maxlifetime 14400
 
-php_value post_max_size 100M
-php_value upload_max_filesize 100M
-
 <filesMatch "\.(png|jpg|jpeg|gif|css|js)$">
 Header set Cache-Control "max-age=604800, must-revalidate"
 </filesMatch>
-
-# Redirect di qualsiasi cosa nelle cartelle .svn alla root del sito
-RewriteRule ^.svn/(.*)$ http://%{HTTP_HOST} [R]
-
-# Nascondiamo anche le svn entries per maggior sicurezza
-<Files "entries">
-Deny from All
-</Files>
