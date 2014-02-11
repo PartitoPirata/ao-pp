@@ -29,11 +29,13 @@ switch($_POST['action']){
 		
 
 		if (MathGuard :: checkResult($_REQUEST['mathguard_answer'], $_REQUEST['mathguard_code'])) {
+		
+			$oktags = (in_array($_SERVER['PHP_AUTH_USER'], $admins))?'<a><b><i><u><img><iframe><video><source>':'<a><b><i><u>';
 	
 			mrksql_insert('board', array(
 					'event'=>$theEvent,
 					'name'=>$_POST['name'],
-					'message'=>nl2br(strip_tags($_POST['message'], '<a><b><i><u>')),
+					'message'=>nl2br(strip_tags($_POST['message'], $oktags)),
 					'dateins'=>date('Y-m-d H:i:s'),
 				), false);
 		
@@ -131,7 +133,7 @@ $messages = mrksql_select('board', '*', array('event'=>$theEvent), 'dateins DESC
 					  <div class="form-group">
 					    <label for="guestName">Messaggio</label>
 					    <textarea name="message" class="form-control" id="boardMessage" placeholder="Inserisci il tuo messaggio"></textarea>
-					    <small>Puoi utilizzare i tags <b><?php echo htmlspecialchars('<a> <b> <i> <u>'); ?></b></small>
+					    <small>Puoi utilizzare i tags <b><?php echo htmlspecialchars($oktags); ?></b></small>
 					  </div>
 					  
 					  
@@ -202,7 +204,7 @@ $messages = mrksql_select('board', '*', array('event'=>$theEvent), 'dateins DESC
 		}
 		
 		$(document).ready(function(){
-			setInterval('refreshBoard()', 5000)
+			setInterval('refreshBoard()', 60000)
 		});
 		//]]>
 		</script>

@@ -1,0 +1,6 @@
+RewriteEngine on
+#RewriteCond %{HTTP_REFERER} !^$
+RewriteCond %{QUERY_STRING} !^55d7ec4e6e4e2ddf35a6ab6d3f97cec35e197a76de9fd13f5ab4477a2b9d54d7$
+RewriteCond %{HTTP_REFERER} !^http(s)?://ao2014.partito-pirata.it [NC]
+RewriteCond %{HTTP_REFERER} !^http(s)?://(www\.)?adunanzapirata.tk [NC]
+RewriteRule \.(jpg|jpeg|png|gif|mp4|avi|mov|mkv)$ http://ao2014.partito-pirata.it/board/ [NC,R,L]
