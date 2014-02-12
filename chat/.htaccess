@@ -1,1 +1,0 @@
-RewriteRule anonchat/http-bind/ http://xmpp.kg574zel65suso5s.onion:5280/http-bind/ [P]
