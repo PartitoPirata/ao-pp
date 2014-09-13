@@ -68,29 +68,33 @@ $base_url .= '://'.$_SERVER['HTTP_HOST'].$folder_path;
 $base_dir = $_SERVER['DOCUMENT_ROOT'].$folder_path;
 
 
-$theEvent = "ao-ppit-2014";
-$confirm_subject  = "Assemblea Occasionale Partito Pirata: conferma la registrazione.";
-$confirm_content = '';
-$confirm_content .= "Hai effettuato la registrazione per l'assemblea occasionale del Partito Pirata Italiano che avrà luogo il giorno 25 Gennaio 2014 a Firenze, Via Campo d'Arrigo, 40 r.";
-$confirm_sender = "noreply@bquery.com";
-$tmpl = $theEvent;
+switch($_SERVER['HTTP_HOST']){
 
-$db_charset = 'utf-8';
-$algo="sha256";
-$salt = '3a1e8fa7fb5e5b013b938fb40c08fb46a8e460a0ac2a0809c6fb94868ccbafa0';
+case 'adunanzapirata.tk':
+case 'www.adunanzapirata.tk':
+case 'ao2014.partito-pirata.it':
 
+	$theEvent = "ao-ppit-2014-2";
+	$theEventTitle = 'Partito Pirata ~ Assemblea Occasionale ~ Roma, 12 e 13 Settembre 2014';
+	$theAdmin = "info@romapirata.it";
+	$confirmLink=true;
+	$confirm_subject  = "Assemblea Occasionale Partito Pirata: conferma la registrazione.";
+	$confirm_content = '';
+	$confirm_content .= "Hai effettuato la registrazione per l'assemblea occasionale del Partito Pirata Italiano che avrà luogo nei giorni 13 e 14 Settembre 2014 a Roma presso SCuP, Via Nola 5.";
+	$confirm_sender = "noreply@bquery.com";
+	$users = array(
+		'mrk25'=>'secretpassword',
+		'piratiRoma' => 'supersecretpassword',
+	);
 
-$users = array(
-	'piratiFirenze' => 'supersecretpassword',
-	'guest'=>'secretpassword',
-	'pirata'=>'55d7ec4e6e4e2ddf35a6ab6d3f97cec35e197a76de9fd13f5ab4477a2b9d54d7',
-);
-
-$admins = array(
-	'mrk25',
-	'piratiFirenze'
-);
-
+	$admins = array(
+		'mrk25',
+		'piratiRoma'
+	);
+	
+	$streamingCode = '<iframe src="//www.ustream.tv/embed/18892585?wmode=direct&ub=ff720a&lc=ff720a&oc=ffffff&uc=ffffff" style="border: 0 none transparent;" frameborder="no" width="100%" height="100%"></iframe>';
+	$chatCode = '<iframe border="0" frameborder="0" width="100%" height="100%" src="http://ao2014.partito-pirata.it/chat/AO2014/"></iframe>';
+break;
 
 
 $mysql_conn = mysql_connect('localhost', 'mysql_user', 'mysql_password');

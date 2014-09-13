@@ -20,6 +20,44 @@ if (!isset($_SERVER['PHP_AUTH_USER'])) {
     
 }
 
+
+if($_GET['action'] == 'export'){
+	
+	/*
+	
+	id	int(11) Auto Increment	 
+	event	varchar(255)	 
+	name	text	 
+	email	text	 
+	nick	text	 
+	citta	text	 
+	provincia	text	 
+	referrer	varchar(64)	 
+	token	text	 
+	pranzo	int(1)	 
+	noglutine	int(1)	 
+	vegetariano	int(1)	 
+	vegan	int(1)	 
+	dateins	datetime	 
+	datemod	datetime	 
+	confirmed	int(1)	  
+	
+	*/
+	
+	$csv_file = "id,name,email,nick,citta,provincia,pranzo,noglutine,vegetariano,vegan,dateins,datemod,confirmed\n";;
+	$data = mrksql_select('guests', 'id,name,email,nick,citta,provincia,pranzo,noglutine,vegetariano,vegan,dateins,datemod,confirmed', array('event'=>$theEvent));
+	foreach($data as $subscriber){
+		$csv_file .= $subscriber['id'].",".$subscriber['name'].",".$subscriber['email'].",".$subscriber['nick'].",".$subscriber['citta'].",".$subscriber['provincia'].",".$subscriber['pranzo'].",".$subscriber['noglutine'].",".$subscriber['vegetariano'].",".$subscriber['vegan'].",".$subscriber['dateins'].",".$subscriber['datemod'].",".$subscriber['confirmed']."\n";	
+	}
+	
+	header('Content-Type: text/plain');
+	header('Content-Disposition: attachment; filename="subscribers.csv"');
+	print($csv_file);
+	die();
+
+}
+
+
 $totalGuests = mrksql_count('guests', '*', array('event'=>$theEvent));
 $confirmedGuests = mrksql_count('guests', '*', 'event="'.$theEvent.'" AND confirmed >= 1');
 
@@ -92,8 +130,9 @@ $guests = mrksql_select('guests', '*', array('event'=>$theEvent), 'nick ASC', fa
 			</button>
 			-->
 		</h2>
-
-
+		
+		<div class="clearfix"></div>
+		
 		<?php foreach($guests as $k => $guest) { ?>
 	
 			<div class="row">
@@ -101,7 +140,7 @@ $guests = mrksql_select('guests', '*', array('event'=>$theEvent), 'nick ASC', fa
 			
 			<div class="col-xs-4 col-sm-6 col-md-8 col-lg-8" style="padding:6px 12px;">
 			<?php //echo $guest['name']; ?>
-			<b><?php echo $guest['nick']; ?></b> [<?php echo $guest['provincia']; ?>]
+			<b><?php echo $guest['name']; ?></b> [<?php echo $guest['email']; ?>]
 			</div>
 			
 			<div class="col-xs-8 col-sm-6 col-md-4 col-lg-4">
@@ -188,6 +227,7 @@ $guests = mrksql_select('guests', '*', array('event'=>$theEvent), 'nick ASC', fa
 	<div style="margin:2em auto; padding:0 2em; border:1px dashed #cccccc; background:#eeeeee;">
 	<h4>Totale iscritti: <?php echo $totalGuests; ?></h4>
 	<h4>Totale confermati: <?php echo $confirmedGuests; ?></h4>
+	<h4><a href="?action=export">Esporta dettagli (.CSV)</a></h4>
 	</div>
 	
 	</body>

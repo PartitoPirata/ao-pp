@@ -140,9 +140,7 @@ Outdated browser!
 <header style="padding:0 2em;">
 <!---->
 <h4>
-Assemblea Occasionale ~
-<img id="main_logo" alt="Partito Pirata" style="max-height:1.6em;margin-bottom:-0.1em;" src="<?php echo $base_url; ?>img/partito-pirata.png" />
-~ Firenze, 25 Gennaio 2014
+<?php echo $theEventTitle; ?>
 </h4>
 </header>
 
@@ -151,14 +149,14 @@ Assemblea Occasionale ~
 	<div class="streaming">
 	<h3>STREAMING <small style="font-variant:small-caps;">&raquo; assemblea in diretta</small></h3>
 	<div class="frame">
-	<iframe border="0" frameborder="0" width="100%" height="100%" src="http://www.ustream.tv/embed/16932496?v=3&amp;wmode=direct" scrolling="no"></iframe>
+	<?php echo $streamingCode; ?>
 	</div>
 	</div>
 
 	<div class="streaming">
 	<h3>CHATROOM <small style="font-variant:small-caps;">&raquo; accesso publico con nickname</small></h3>
 	<div class="frame">
-	<iframe border="0" frameborder="0" width="100%" height="100%" src="http://ao2014.partito-pirata.it/chat/AO2014/"></iframe>
+	<?php echo $chatCode; ?>
 	</div>
 	</div>
 </div>
@@ -169,9 +167,9 @@ Assemblea Occasionale ~
 <br />
 <a href="<?php echo $base_url; ?>">Assemblea Occasionale 2014</a>
 </p>
-<p>L'Assemblea Occasionale 2014 &egrave; organizzata dalla sezione territoriale dell'area metropolitana di Firenze.
+<p>L'Assemblea Occasionale 2014 &egrave; organizzata dalla sezione territoriale dell'area metropolitana di Roma.
 <br />
-Per qualsiasi comunicazione con gli organizzatori scrivere all'indirizzo:<br />firenze [at] lists.partito-pirata [punto] it
+Per qualsiasi comunicazione con gli organizzatori scrivere all'indirizzo:<br />roma [at] lists.partito-pirata [punto] it
 </p>
 </footer>
 
